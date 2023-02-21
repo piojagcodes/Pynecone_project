@@ -2,7 +2,7 @@ import {useEffect, useRef, useState} from "react"
 import {useRouter} from "next/router"
 import {E, connect, updateState} from "/utils/state"
 import "focus-visible/dist/focus-visible"
-import {Button, HStack, Heading, useColorMode} from "@chakra-ui/react"
+import {Button, Heading, VStack, useColorMode} from "@chakra-ui/react"
 import NextHead from "next/head"
 
 const EVENT = "ws://localhost:8000/event"
@@ -41,17 +41,17 @@ useEffect(() => {
   update()
 })
 return (
-<HStack><Button colorScheme="red"
-onClick={() => Event([E("state.decrement", {})])}
-sx={{"borderRadius": "1em"}}>{`-`}</Button>
-<Heading sx={{"fontSize": "2em"}}>{state.count}</Heading>
-<Button colorScheme="green"
-onClick={() => Event([E("state.increment", {})])}
-sx={{"borderRadius": "1em"}}>{`+`}</Button>
+<VStack><Button colorScheme="gray"
+onClick={() => Event([E("state.backwards", {})])}
+sx={{"borderRadius": "1em"}}>{`<`}</Button>
+<Heading sx={{"color": state.color, "fontSize": "2em"}}>{`Hello World`}</Heading>
+<Button colorScheme="gray"
+onClick={() => Event([E("state.forward", {})])}
+sx={{"borderRadius": "1em"}}>{`>`}</Button>
 <NextHead><title>{`Pynecone App`}</title>
 <meta content="A Pynecone app."
 name="description"/>
 <meta content="favicon.ico"
-property="og:image"/></NextHead></HStack>
+property="og:image"/></NextHead></VStack>
 )
 }
